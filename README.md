@@ -149,7 +149,7 @@ public:
 };
 ```
 
-Mind the macro `TICPP_READWRITE`.
+Mind the macro `TICPP_READWRITE` which adds declarations for the functions `read()` and `write()` and also marks this file as _to be parsed by code generator_.
 
 ### Generate code
 
