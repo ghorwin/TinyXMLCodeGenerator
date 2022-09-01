@@ -5,7 +5,7 @@ This code is based on the NANDRAD/VICUS code generator from [SIM-VICUS](https://
 
 ## Usage:
 
-### Annotate classes
+### 1. Annotate classes
 
 ```c++
 /*! Test class to check correct functionality of the TinyXML code generator.
@@ -151,7 +151,7 @@ public:
 
 Mind the macro `TICPP_READWRITE` which adds declarations for the functions `read()` and `write()` and also marks this file as _to be parsed by code generator_.
 
-### Generate code
+### 2. Generate code
 
 ```bash
 # SYNTAX: TinyXMLCodeGenerator <namespace> <path/to/src> <generateQtSrc> <prefix> <cg-dir>
@@ -160,4 +160,20 @@ Mind the macro `TICPP_READWRITE` which adds declarations for the functions `read
 
 This will generate the file `/path/to/MyProject/src/cg/cg_SerializationTest.h` which contains the implementations of the functions `read()` and `write()`.
 
+TIPP: you may want to automate this as part of your build-chain.
 
+### 3. Use generated code
+
+```c++
+SerializationTest t;
+// populate t with data
+t.writeXML("path/to/xmlfile.xml");
+
+SerializationTest t2;
+try {
+    t2.readXML("path/to/xmlfile.xml");
+}
+catch (IBK::Exception & ex) {
+    // error handling
+}
+```
